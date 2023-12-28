@@ -24,8 +24,7 @@
             border-radius:50%;
             cursor:pointer;
 
-            &::before{
-                content:"";
+            &__triangle{
                 width:0;
                 height:0;
                 border-top:100px solid transparent;

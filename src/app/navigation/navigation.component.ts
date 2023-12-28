@@ -20,7 +20,7 @@ export class NavigationComponent implements OnInit {
             this.pathTitle = 'Login';
             break;
           case '/timer':
-            this.pathTitle = 'Timer';
+            this.pathTitle = ' - Start';
             break;
           case '/overview':
             this.pathTitle = 'Übersicht';
