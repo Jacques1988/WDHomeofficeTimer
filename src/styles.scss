@@ -12,3 +12,37 @@ html{
 a{
     text-decoration:none;
 }
+
+.btn{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:100%;
+    font-size:16px;
+    padding:8px;
+    border:none;
+    transition:all 0.225s ease-in-out;
+    cursor:pointer;
+
+    &:hover{
+        background-color:grey;
+        color:#fff;
+    }
+}
+
+input{
+    font-size:16px;
+    width:100%;
+    outline:none;
+    padding:4px 0;
+}
+
+.screen-section{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+    width:100%;
+    height:calc(100vh - 64px);
+    background-color:whitesmoke;
+}
