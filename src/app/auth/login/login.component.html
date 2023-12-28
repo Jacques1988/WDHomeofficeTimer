@@ -1,21 +1,21 @@
 <section class="screen-section">
     <div class="login-container">
-        <form class="login-container__form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-container__form">
             <div class="login-container__form__head">
                 <h1>Login</h1>
             </div>
             <div class="login-container__form__body">
                 <div class="login-container__form__body__input-container">
                     <label for="username">Benutzername:</label>
-                    <input type="text" name="username" placeholder="Your username">
+                    <input type="text" name="username" placeholder="Your username" formControlName="userName">
                 </div>
                 <div class="login-container__form__body__input-container">
                     <label for="userpassword">Password:</label>
-                    <input type="text" name="userpassword" placeholder="Your Password">
+                    <input type="text" name="userpassword" placeholder="Your Password" formControlName="userPassword">
                 </div>
             </div>
             <div class="login-container__form__footer">
-                <button routerLink="/timer" class="btn btn-login" type="submit">Login</button>
+                <button class="btn btn-login" type="submit">Login</button>
             </div>
         </form>
     </div>

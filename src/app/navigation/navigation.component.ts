@@ -29,7 +29,7 @@ export class NavigationComponent implements OnInit {
             this.pathTitle = "";
         }
       }
-    })
+    });
   }
 
 }
