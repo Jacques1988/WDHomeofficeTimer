@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './auth/login/login.component';
 import { TimerComponent } from './timer/timer/timer.component';
+import { OverviewComponent } from './overview/overview/overview.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { TimerComponent } from './timer/timer/timer.component';
     NavigationComponent,
     LoginComponent,
     TimerComponent,
+    OverviewComponent,
 
   ],
   imports: [

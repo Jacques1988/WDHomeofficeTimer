@@ -1,0 +1,80 @@
+.overview-container{
+    display:flex;
+    justify-content: space-around;
+    align-items:flex-start;
+    flex-direction: column;
+    border:1px solid grey;
+    padding:16px;
+    width:900px;
+    height:500px;
+
+    &__navigation-btn{
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        
+        &__arrow{
+            width:0;
+            height:0;
+            border-top:10px solid transparent;
+            border-bottom:10px solid transparent;
+            border-right:10px solid grey;
+            margin-right:8px;
+        }
+
+        &__title{
+            color:#1b1b1b;
+        }
+    }
+
+    &__form{
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        flex-direction:column;
+        width:300px;
+        height:200px;
+
+        &__datepicker-container{
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction:column;
+            width:100%;
+        }
+    }
+
+    &__timelist-container{
+        display:flex;
+        justify-content: center;
+        align-items:flex-start;
+        flex-direction:column;
+        width:300px;
+        padding:16px;
+
+        &__title{
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            font-weight:bold;
+        }
+
+        &__time-list{
+            margin:0;
+            padding:0;
+            list-style: none;
+            width:100%;
+
+            &__element{
+                display:flex;
+                justify-content: flex-start;
+                align-items:center;
+                border-bottom:1px solid grey;
+                width:100%;
+                padding:4px;
+                margin-top:4px;
+            }
+        }
+    }
+
+}
