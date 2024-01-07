@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { TimesService } from 'src/app/timer/times.service';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TimerComponent {
   runTimer: boolean = false;
-
-  constructor() { }
+  date: string = '';
+  constructor(private timesService: TimesService) { }
 
   onStart() {
     this.runTimer = true;
@@ -20,7 +20,9 @@ export class TimerComponent {
       startBtn.style.backgroundColor = 'grey';
       startTriangle.style.borderLeftColor = '#fff';
     }
-    return this.setTime();
+    this.date = new Date().toLocaleDateString('de-de', { year: "numeric", month: "numeric", day: "numeric" }).padStart(2, '0');
+    let start = this.setTime();
+    this.timesService.setStartTime(start, this.date);
   }
 
   onStop() {
@@ -33,15 +35,16 @@ export class TimerComponent {
       startBtn.style.backgroundColor = 'unset';
       startTriangle.style.borderLeftColor = 'green';
     }
-    return this.setTime();
+    let end = this.setTime();
+    this.timesService.setStopTime(end);
   }
 
   setTime() {
     let today = new Date();
     let std = today.getHours().toString().padStart(2, '0');
     let min = today.getMinutes().toString().padStart(2, '0');
-    let sec = today.getSeconds().toString().padStart(2, '0');
-    return std + ':' + min + ':' + sec;
+
+    return std + ':' + min;
   }
 }
 

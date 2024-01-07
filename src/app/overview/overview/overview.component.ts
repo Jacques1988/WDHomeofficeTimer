@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TimesService } from '../times.service';
+import { TimesService } from '../../timer/times.service';
 
 @Component({
   selector: 'app-overview',
@@ -8,7 +8,6 @@ import { TimesService } from '../times.service';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent {
-  today: string = "";
   getDate: boolean = false;
   constructor(private timeService: TimesService) { }
 
@@ -21,7 +20,6 @@ export class OverviewComponent {
 
   getWorkTimes() {
     this.getDate = true;
-    this.timeService.getTimes(this.workdayForm.value);
   }
 
 }

@@ -4,9 +4,8 @@ export const users = [
         username: 'jacques',
         userpassword: 'test',
         worktimes: {
-            date: '01.01.2024',
-            times: ['10:00 - 15:00 Uhr'],
-
+            date: [],
+            times: [''],
         }
     },
     {
