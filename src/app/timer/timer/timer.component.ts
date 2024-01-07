@@ -20,7 +20,6 @@ export class TimerComponent {
       startBtn.style.backgroundColor = 'grey';
       startTriangle.style.borderLeftColor = '#fff';
     }
-
     return this.setTime();
   }
 
@@ -39,9 +38,9 @@ export class TimerComponent {
 
   setTime() {
     let today = new Date();
-    let std = today.getHours();
-    let min = today.getMinutes();
-    let sec = today.getSeconds();
+    let std = today.getHours().toString().padStart(2, '0');
+    let min = today.getMinutes().toString().padStart(2, '0');
+    let sec = today.getSeconds().toString().padStart(2, '0');
     return std + ':' + min + ':' + sec;
   }
 }

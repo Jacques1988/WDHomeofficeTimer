@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { users } from './login/users';
+import { users } from '../users';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,6 @@ export class AuthService {
   login(userName: string, userPassword: string) {
     if (users.find(el => el.username === userName && el.userpassword === userPassword)) {
       this.userId = users.find(el => el.username === userName)!.id;
-      console.log(this.userId);
       this.isAuthenticated === true;
       this.router.navigate(['/timer']);
     } else {

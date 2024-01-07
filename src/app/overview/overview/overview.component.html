@@ -4,19 +4,17 @@
             <span class="overview-container__navigation-btn__arrow"></span>
             <span class="overview-container__navigation-btn__title">Start/Stop</span>
         </a>
-        <form class="overview-container__form">
+        <form [formGroup]="workdayForm" (ngSubmit)="getWorkTimes()" class="overview-container__form">
             <div class="overview-container__form__datepicker-container">
                 <h2>Datum wählen</h2>
-                <input class="overview-container__form__datepicker-container__datepicker" type="date">
+                <input
+                    class="overview-container__form__datepicker-container__datepicker"
+                    type="date"
+                    formControlName="workdate"
+                >
             </div>
             <button class="btn">OK</button>
         </form>
-        <div class="overview-container__timelist-container">
-            <span class="overview-container__timelist-container__title">09.03.2020</span>
-            <ul class="overview-container__timelist-container__time-list">
-                <li class="overview-container__timelist-container__time-list__element">12:00 - 12:05 Uhr</li>
-                <li class="overview-container__timelist-container__time-list__element">12:00 - 12:05 Uhr</li>
-            </ul>
-        </div>
+        <app-show-times *ngIf="getDate"></app-show-times>
     </div>
 </section>

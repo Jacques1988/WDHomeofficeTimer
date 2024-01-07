@@ -8,6 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './auth/login/login.component';
 import { TimerComponent } from './timer/timer/timer.component';
 import { OverviewComponent } from './overview/overview/overview.component';
+import { ShowTimesComponent } from './overview/show-times/show-times.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { OverviewComponent } from './overview/overview/overview.component';
     LoginComponent,
     TimerComponent,
     OverviewComponent,
+    ShowTimesComponent,
 
   ],
   imports: [

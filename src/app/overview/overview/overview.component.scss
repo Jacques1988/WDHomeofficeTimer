@@ -44,37 +44,4 @@
         }
     }
 
-    &__timelist-container{
-        display:flex;
-        justify-content: center;
-        align-items:flex-start;
-        flex-direction:column;
-        width:300px;
-        padding:16px;
-
-        &__title{
-            display:flex;
-            justify-content:center;
-            align-items: center;
-            font-weight:bold;
-        }
-
-        &__time-list{
-            margin:0;
-            padding:0;
-            list-style: none;
-            width:100%;
-
-            &__element{
-                display:flex;
-                justify-content: flex-start;
-                align-items:center;
-                border-bottom:1px solid grey;
-                width:100%;
-                padding:4px;
-                margin-top:4px;
-            }
-        }
-    }
-
 }
