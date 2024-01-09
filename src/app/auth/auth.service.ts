@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { authData } from './login/authData';
+import { Observable } from 'rxjs';
 
 /* import { users } from '../users'; */
 
@@ -11,30 +13,34 @@ import { environment } from 'src/environments/environment.development';
 export class AuthService {
   private isAuthenticated: boolean = false;
   private userId: string = "";
-  loginUrl: string = environment.loginApiUrl;
+  headers = new HttpHeaders().append('Content-Type', 'application/JSON');
+  loginUrl: string = environment.loginUrl;
 
   constructor(
     private router: Router,
     private httpClient: HttpClient
   ) { }
 
-  login(userName: string, userPassword: string) {
-    //todo: post mit httpClient erstmal ohne CryptoJS
+
+  login(userName: string, userPassword: string): Observable<authData> {
+    let data = { name: userName, password: userPassword };
+    return this.httpClient.post<authData>(this.loginUrl, data, { headers: this.headers });
   }
-
-
-
-  // Fakelogin from frontend
-
-  /*  login(userName: string, userPassword: string) {
-     if (users.find(el => el.username === userName && el.userpassword === userPassword)) {
-       this.userId = users.find(el => el.username === userName)!.id;
-       this.isAuthenticated === true;
-       this.router.navigate(['/timer']);
-     } else {
-       const failedContainer = document.getElementById('fail')!;
-       failedContainer.style.color = 'red';
-       failedContainer.innerHTML = 'Login Fehlgeschlagen';
-     }
-   } */
 }
+
+
+
+// Fakelogin from frontend
+
+/*  login(userName: string, userPassword: string) {
+   if (users.find(el => el.username === userName && el.userpassword === userPassword)) {
+     this.userId = users.find(el => el.username === userName)!.id;
+     this.isAuthenticated === true;
+     this.router.navigate(['/timer']);
+   } else {
+     const failedContainer = document.getElementById('fail')!;
+     failedContainer.style.color = 'red';
+     failedContainer.innerHTML = 'Login Fehlgeschlagen';
+   }
+ } */
+
