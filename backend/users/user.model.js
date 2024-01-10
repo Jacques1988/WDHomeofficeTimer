@@ -1,4 +1,5 @@
 import { mongoose } from "mongoose";
+import bcrypt from 'bcrypt';
 
 
 mongoose.connect('mongodb://0.0.0.0:27017/werkDigital',).then(() => {
@@ -19,9 +20,19 @@ export async function homeRoute(req, res) {
 }
 
 export async function loginAction(req, res) {
-    const username = req.body.name;
-    const password = req.body.password;
-    const fetchedUser = await User.find({ name: username, password: password });
-    console.log(fetchedUser);
+
+    const user = await User.findOne({ name: req.body.name })
+    const userId = user._id.toString();
+
+    bcrypt.compare(req.body.password, user.password, function (err, results) {
+        if (err) {
+            throw new Error(err)
+        }
+        if (results) {
+            return res.status(200).json(userId)
+        } else {
+            return res.status(401).json({ message: "invalid login" })
+        }
+    });
 }
 

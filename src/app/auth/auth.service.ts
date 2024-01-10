@@ -26,6 +26,30 @@ export class AuthService {
     let data = { name: userName, password: userPassword };
     return this.httpClient.post<authData>(this.loginUrl, data, { headers: this.headers });
   }
+
+  setAuthenticationState(userID: string, authenticated: boolean) {
+    this.userId = userID;
+    this.isAuthenticated = authenticated;
+    this.isLoggedIn();
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+
+  getIsAuthenticated() {
+    return this.isAuthenticated;
+  }
+
+  isLoggedIn() {
+    if (this.isAuthenticated && this.userId) {
+      this.router.navigate(['/timer']);
+    } else {
+      this.isAuthenticated = false;
+      this.userId = '';
+      this.router.navigate(['/']);
+    }
+  }
 }
 
 
