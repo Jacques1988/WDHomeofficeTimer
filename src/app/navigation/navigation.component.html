@@ -3,6 +3,6 @@
         <span class="navigation__inner-container__path">Homeoffice CheckIn {{ pathTitle }}</span>
     </div>
     <div class="navigation__sign-up-container">
-        <a *ngIf="signUp" routerLink="/signUp">Sign Up</a>
+        <a *ngIf="signUp" (click)="checkRoute()" routerLink="/{{route}}">{{route}}</a>
     </div>
 </nav>

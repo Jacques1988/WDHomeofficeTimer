@@ -11,12 +11,12 @@ import { AuthService } from '../auth/auth.service';
 export class SignUpComponent {
 
   signUpForm: FormGroup = new FormGroup({
-    'firstname': new FormControl(null, [Validators.required]),
-    'lastname': new FormControl(null, [Validators.required]),
+    'firstname': new FormControl(null, [Validators.required, Validators.minLength(4)]),
+    'lastname': new FormControl(null, [Validators.required, Validators.minLength(4)]),
     'birthdate': new FormControl(null, [Validators.required]),
-    'username': new FormControl(null, [Validators.required]),
-    'password': new FormControl(null, [Validators.required]),
-    'passwordrepeat': new FormControl(null, [Validators.required])
+    'username': new FormControl(null, [Validators.required, Validators.minLength(4)]),
+    'password': new FormControl(null, [Validators.required, Validators.minLength(4)]),
+    'passwordrepeat': new FormControl(null, [Validators.required, Validators.minLength(4)])
   });
 
 

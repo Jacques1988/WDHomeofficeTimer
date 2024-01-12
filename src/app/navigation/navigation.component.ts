@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, Route } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -9,27 +9,33 @@ import { Router, NavigationStart } from '@angular/router';
 export class NavigationComponent implements OnInit {
   pathTitle: string = "";
   route: string = "";
-  routeSubscription: any;
   signUp: boolean = true;
-  constructor(private router: Router) { }
+  trackRoute: any;
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
-    this.routeSubscription = this.router.events.subscribe(event => {
+
+    this.trackRoute = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         switch (event.url) {
           case '/':
             this.pathTitle = 'Login';
             this.signUp = true;
+            this.route = 'signUp'
             break;
           case '/signUp':
             this.pathTitle = 'Sign Up'
-            this.signUp = false;
+            this.route = 'login';
             break;
           case '/timer':
             this.pathTitle = ' - Start';
+            this.signUp = false;
             break;
           case '/overview':
             this.pathTitle = 'Übersicht';
+            this.signUp = false;
             break;
           default:
             this.pathTitle = "";
@@ -38,4 +44,14 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  checkRoute() {
+    if (this.router.url === '/signUp') {
+      this.route = 'signUp';
+      this.pathTitle = 'Login'
+    }
+    if (this.router.url === 'login') {
+      this.route = 'login';
+    }
+  }
 }
+
