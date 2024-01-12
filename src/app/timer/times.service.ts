@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { users } from '../users';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,11 @@ export class TimesService {
 
   setStopTime(time: string) {
     this.stopTime = time;
-    this.pushTime();
+    /* this.pushTime(); */
   }
 
-  pushTime() {
+  /* pushTime() {
     let workTime = this.startTime + ' - ' + this.stopTime;
     users[0].worktimes.times?.push(workTime);
-  }
+  } */
 }

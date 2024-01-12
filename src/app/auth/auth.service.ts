@@ -5,8 +5,6 @@ import { environment } from 'src/environments/environment.development';
 import { authData } from './login/authData';
 import { Observable } from 'rxjs';
 
-/* import { users } from '../users'; */
-
 @Injectable({
   providedIn: 'root'
 })
@@ -52,19 +50,4 @@ export class AuthService {
   }
 }
 
-
-
-// Fakelogin from frontend
-
-/*  login(userName: string, userPassword: string) {
-   if (users.find(el => el.username === userName && el.userpassword === userPassword)) {
-     this.userId = users.find(el => el.username === userName)!.id;
-     this.isAuthenticated === true;
-     this.router.navigate(['/timer']);
-   } else {
-     const failedContainer = document.getElementById('fail')!;
-     failedContainer.style.color = 'red';
-     failedContainer.innerHTML = 'Login Fehlgeschlagen';
-   }
- } */
 
