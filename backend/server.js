@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 
 app.use('/', userRouter);
 app.use('/login', userRouter);
+app.use('signUp', userRouter);
 
 
 app.listen(port, () => {

@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { TimerComponent } from './timer/timer/timer.component';
 import { OverviewComponent } from './overview/overview/overview.component';
 import { ShowTimesComponent } from './overview/show-times/show-times.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 
@@ -21,6 +22,7 @@ import { ShowTimesComponent } from './overview/show-times/show-times.component';
     TimerComponent,
     OverviewComponent,
     ShowTimesComponent,
+    SignUpComponent,
 
   ],
   imports: [

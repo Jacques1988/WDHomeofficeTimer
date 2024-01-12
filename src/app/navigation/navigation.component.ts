@@ -10,6 +10,7 @@ export class NavigationComponent implements OnInit {
   pathTitle: string = "";
   route: string = "";
   routeSubscription: any;
+  signUp: boolean = true;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -18,6 +19,11 @@ export class NavigationComponent implements OnInit {
         switch (event.url) {
           case '/':
             this.pathTitle = 'Login';
+            this.signUp = true;
+            break;
+          case '/signUp':
+            this.pathTitle = 'Sign Up'
+            this.signUp = false;
             break;
           case '/timer':
             this.pathTitle = ' - Start';

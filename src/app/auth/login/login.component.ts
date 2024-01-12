@@ -11,7 +11,6 @@ import { authData } from './authData';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  /* userID: string = '' || false; */
   loginFailed: boolean = false;
 
   constructor(
@@ -22,7 +21,7 @@ export class LoginComponent {
 
   loginForm: FormGroup = new FormGroup({
     'userName': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z0-9]')]),
-    'userPassword': new FormControl(null, Validators.required)
+    'userPassword': new FormControl(null, Validators.required),
   });
 
 

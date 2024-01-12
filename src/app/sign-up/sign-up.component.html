@@ -1,0 +1,30 @@
+<section class="screen-section">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-container__form">
+        <div class="sign-up-container__head">
+            <h1>Sign Up</h1>
+        </div>
+        <div class="sign-up-container__form__input-group">
+            <label for="firstname">Vorname</label>
+            <input class="sign-up-container__form__input-group__input-container" type="text" formControlName="firstname">
+            <label for="lastname">Nachname</label>
+            <input class="sign-up-container__form__input-group__input-container" type="text" formControlName="lastname">
+        </div>
+        <div class="sign-up-container__form__input-group">
+            <label for="birthdate">Geburtsdatum</label>
+            <input class="sign-up-container__form__input-group__input-container" type="date" formControlName="birthdate">
+            <label for="username">Nutzername</label>
+            <input class="sign-up-container__form__input-group__input-container" type="text" formControlName="username">
+        </div>
+        <div class="sign-up-container__form__input-group">
+            <label for="password">Passwort</label>
+            <input class="sign-up-container__form__input-group__input-container" type="password" formControlName="password">
+            <label for="passwordrepeat">Passwort wiederholen</label>
+            <input class="sign-up-container__form__input-group__input-container" type="password" formControlName="passwordrepeat">
+        </div>
+        <div class="sign-up-container__form__footer">
+            <button type="submit">
+                Sign Up
+            </button>
+        </div>
+    </form>
+</section>
