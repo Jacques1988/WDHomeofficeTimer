@@ -11,6 +11,13 @@ const UserSchema = mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+export async function fetchUser(id) {
+    let user = await User.findById(id);
+    console.log(user.firstname);
+    return user;
+}
+
+
 export { User }
 
 

@@ -29,9 +29,10 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value.userName, this.loginForm.value.userPassword).subscribe(response => {
-        let userID: any = response;
+        let userID: any = response.userId;
+        let userName: any = response.userName;
         this.loginFailed = false;
-        this.authService.setAuthenticationState(userID, true)
+        this.authService.setAuthenticationState(userID, userName, true)
       }, error => {
         this.loginFailed = true;
         this.loginForm.reset();

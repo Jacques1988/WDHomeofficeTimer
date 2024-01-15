@@ -17,8 +17,7 @@ export class TimerComponent {
   ) { }
 
   ngOnInit() {
-    const userId = this.authService.getUserId();
-
+    this.username = this.authService.getUserName();
   }
 
   onStart() {

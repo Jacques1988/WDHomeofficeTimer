@@ -29,7 +29,7 @@ export class SignUpComponent {
   onSubmit() {
     this.signUpService.signUp(this.signUpForm.value).subscribe(response => {
       let userId: any = response;
-      this.authService.setAuthenticationState(userId, true);
+      /*  this.authService.setAuthenticationState(userId, true); */
     });
   }
 

@@ -11,8 +11,11 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private isAuthenticated: boolean = false;
   private userId: string = "";
+  private userName: string = '';
+
   headers = new HttpHeaders().append('Content-Type', 'application/JSON');
   loginUrl: string = environment.loginUrl;
+
 
   constructor(
     private router: Router,
@@ -25,8 +28,9 @@ export class AuthService {
     return this.httpClient.post<authData>(this.loginUrl, data, { headers: this.headers });
   }
 
-  setAuthenticationState(userID: string, authenticated: boolean) {
+  setAuthenticationState(userID: string, userName: string, authenticated: boolean) {
     this.userId = userID;
+    this.userName = userName;
     this.isAuthenticated = authenticated;
     this.isLoggedIn();
   }
@@ -35,13 +39,17 @@ export class AuthService {
     return this.userId;
   }
 
+  getUserName() {
+    return this.userName;
+  }
+
   getIsAuthenticated() {
     return this.isAuthenticated;
   }
 
   isLoggedIn() {
     if (this.isAuthenticated && this.userId) {
-      this.router.navigate([`/timer/${this.userId}`]);
+      this.router.navigate(['/timer/' + this.userId]);
     } else {
       this.isAuthenticated = false;
       this.userId = '';

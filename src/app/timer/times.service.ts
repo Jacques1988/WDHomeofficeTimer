@@ -12,10 +12,6 @@ export class TimesService {
 
   constructor() { }
 
-  getUsername(userId: string) {
-
-  }
-
 
   setStartTime(time: string, date: string) {
     this.date = date;

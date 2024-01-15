@@ -8,7 +8,7 @@ export async function homeRoute(req, res) {
 
 export async function loginAction(req, res) {
 
-    const user = await User.findOne({ name: req.body.username })
+    const user = await User.findOne({ username: req.body.name })
     const userId = user._id.toString();
 
     bcrypt.compare(req.body.password, user.password, function (err, results) {
@@ -16,7 +16,10 @@ export async function loginAction(req, res) {
             throw new Error(err)
         }
         if (results) {
-            return res.status(200).json(userId)
+            return res.status(200).json({
+                userId: userId,
+                userName: user.username
+            })
         } else {
             return res.status(401).json({ message: "invalid login" })
         }
@@ -39,12 +42,10 @@ export async function signUpAction(req, res) {
         });
         const user = await User.findOne({ username: savedUser.username })
         const userId = user._id.toString();
-        return res.status(200).json(userId);
+        return res.status(200).json({ userId: userId, userName: user.username });
     }
 }
 
-export async function getUsernameAction(req, res) {
-    console.log('Hallo');
-    const userId = req.params.id;
-    console.log(userId);
+export async function getUser(id) {
+    console.log(id);
 }
