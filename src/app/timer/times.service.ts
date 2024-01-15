@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -8,7 +9,13 @@ export class TimesService {
   startTime: string = '';
   stopTime: string = '';
   date: string = '';
+
   constructor() { }
+
+  getUsername(userId: string) {
+
+  }
+
 
   setStartTime(time: string, date: string) {
     this.date = date;

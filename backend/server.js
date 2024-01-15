@@ -1,6 +1,12 @@
 
 import express from 'express';
 import { router as userRouter } from './users/index.js';
+import { mongoose } from "mongoose";
+
+
+mongoose.connect('mongodb://0.0.0.0:27017/werkDigital',).then(() => {
+    console.log('Connected to Database');
+}).catch((error) => { console.log('Connection failed: ', error) });
 
 
 const app = express();
@@ -15,8 +21,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/', userRouter);
-app.use('/login', userRouter);
-app.use('signUp', userRouter);
+/* app.use('/login', userRouter);
+app.use('/signUp', userRouter);
+app.use('/timer', userRouter); */
 
 
 app.listen(port, () => {

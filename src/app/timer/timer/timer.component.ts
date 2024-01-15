@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TimesService } from 'src/app/timer/times.service';
+import { AuthService } from 'src/app/auth/auth.service';
+
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -8,7 +10,16 @@ import { TimesService } from 'src/app/timer/times.service';
 export class TimerComponent {
   runTimer: boolean = false;
   date: string = '';
-  constructor(private timesService: TimesService) { }
+  username: string = '';
+  constructor(
+    private timesService: TimesService,
+    private authService: AuthService
+  ) { }
+
+  ngOnInit() {
+    const userId = this.authService.getUserId();
+
+  }
 
   onStart() {
     this.runTimer = true;

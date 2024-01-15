@@ -41,7 +41,7 @@ export class AuthService {
 
   isLoggedIn() {
     if (this.isAuthenticated && this.userId) {
-      this.router.navigate(['/timer']);
+      this.router.navigate([`/timer/${this.userId}`]);
     } else {
       this.isAuthenticated = false;
       this.userId = '';
