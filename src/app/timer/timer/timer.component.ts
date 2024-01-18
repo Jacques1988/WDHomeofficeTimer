@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimesService } from 'src/app/timer/times.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-timer',
@@ -10,14 +11,17 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class TimerComponent {
   runTimer: boolean = false;
   date: string = '';
+  userId: string = '';
   username: string = '';
   constructor(
     private timesService: TimesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.username = this.authService.getUserName();
+    this.userId = this.activatedRoute.snapshot.paramMap.get('id')!;
+    /* this.username = this.authService.getUserName(); */
   }
 
   onStart() {
@@ -33,6 +37,7 @@ export class TimerComponent {
     this.date = new Date().toLocaleDateString('de-de', { year: "numeric", month: "numeric", day: "numeric" }).padStart(2, '0');
     let start = this.setTime();
     this.timesService.setStartTime(start, this.date);
+    console.log(start);
   }
 
   onStop() {
@@ -47,6 +52,7 @@ export class TimerComponent {
     }
     let end = this.setTime();
     this.timesService.setStopTime(end);
+    console.log(end);
   }
 
   setTime() {

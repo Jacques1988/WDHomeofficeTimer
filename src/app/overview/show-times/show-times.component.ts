@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowTimesComponent {
 
-  workDay: any = '';
-  workTime: any = '';
+  workDay: string = '';
+  workTime: string = '';
 
   constructor() { }
 

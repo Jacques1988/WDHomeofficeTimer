@@ -17,8 +17,11 @@ export async function loginAction(req, res) {
         }
         if (results) {
             return res.status(200).json({
-                userId: userId,
-                userName: user.username
+                id: userId,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                birthdate: user.birthdate,
+                username: user.username
             })
         } else {
             return res.status(401).json({ message: "invalid login" })

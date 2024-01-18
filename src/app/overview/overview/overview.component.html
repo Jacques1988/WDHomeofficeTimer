@@ -1,6 +1,6 @@
 <section class="screen-section">
     <div class="overview-container">
-        <a routerLink="/timer" class="overview-container__navigation-btn">
+        <a routerLink="/timer/{{userId}}" class="overview-container__navigation-btn">
             <span class="overview-container__navigation-btn__arrow"></span>
             <span class="overview-container__navigation-btn__title">Start/Stop</span>
         </a>
@@ -10,6 +10,7 @@
                 <input
                     class="overview-container__form__datepicker-container__datepicker"
                     type="date"
+                    [(ngModel)]="currentDate"
                     formControlName="workdate"
                 >
             </div>

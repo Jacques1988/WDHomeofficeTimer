@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { authData } from './login/authData';
+import { User } from '../models/User.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private isAuthenticated: boolean = false;
-  private userId: string = "";
-  private userName: string = '';
+  private user: any = {};
 
   headers = new HttpHeaders().append('Content-Type', 'application/JSON');
   loginUrl: string = environment.loginUrl;
@@ -28,19 +28,21 @@ export class AuthService {
     return this.httpClient.post<authData>(this.loginUrl, data, { headers: this.headers });
   }
 
-  setAuthenticationState(userID: string, userName: string, authenticated: boolean) {
-    this.userId = userID;
-    this.userName = userName;
+  setAuthenticationState(user: User, authenticated: boolean) {
+    this.user = new User(
+      user.id,
+      user.firstname,
+      user.lastname,
+      user.birthdate,
+      user.username,
+    );
     this.isAuthenticated = authenticated;
     this.isLoggedIn();
   }
 
-  getUserId() {
-    return this.userId;
-  }
-
-  getUserName() {
-    return this.userName;
+  getUser() {
+    console.log(this.user)
+    /* return this.userName; */
   }
 
   getIsAuthenticated() {
@@ -48,11 +50,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    if (this.isAuthenticated && this.userId) {
-      this.router.navigate(['/timer/' + this.userId]);
+    if (this.isAuthenticated && this.user.id) {
+      this.router.navigate(['/timer/' + this.user.id]);
     } else {
       this.isAuthenticated = false;
-      this.userId = '';
+      this.user.userId = '';
       this.router.navigate(['/']);
     }
   }

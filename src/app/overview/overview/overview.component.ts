@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TimesService } from '../../timer/times.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -9,7 +10,18 @@ import { TimesService } from '../../timer/times.service';
 })
 export class OverviewComponent {
   getDate: boolean = false;
-  constructor(private timeService: TimesService) { }
+  userId: string = '';
+  currentDate: string = new Date().toISOString().substring(0, 10);
+
+  constructor(
+    private timeService: TimesService,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.userId = this.activatedRoute.snapshot.paramMap.get('id')!;
+  }
+
 
 
   workdayForm: FormGroup = new FormGroup({
@@ -20,6 +32,7 @@ export class OverviewComponent {
 
   getWorkTimes() {
     this.getDate = true;
+    console.log(this.workdayForm.value);
   }
 
 }

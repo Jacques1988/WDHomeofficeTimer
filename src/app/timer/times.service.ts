@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -10,7 +11,10 @@ export class TimesService {
   stopTime: string = '';
   date: string = '';
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
 
 
   setStartTime(time: string, date: string) {
