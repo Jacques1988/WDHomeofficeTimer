@@ -15,7 +15,7 @@
 
         </div>
         <div class="timer-container__buttons__overview">
-            <button routerLink="/overview/{{userId}}" class="btn">Übersicht</button>
+            <button [disabled]="runTimer" routerLink="/overview/{{userId}}" class="btn">Übersicht</button>
         </div>
     </div>
 </section>
