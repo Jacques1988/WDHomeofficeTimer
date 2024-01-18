@@ -30,6 +30,7 @@
                 border-top:100px solid transparent;
                 border-bottom:100px solid transparent;
                 border-left:150px solid green;
+                margin-left:25px;
             }
         }
 
@@ -53,20 +54,17 @@
             }
         }
     }
+}
 
-    &__time-container{
-        display:flex;
-        justify-content: center;
-        align-items:center;
-        flex-direction:column;
-        padding:16px;
+.deactivate-button{
+    background-color: grey !important;
+    border: 1px solid grey;
+}
 
-        &__title{
-            font-size:20px;
-        }
+.deactivate-button-triangle{
+    border-left-color: #fff !important;
+}
 
-        &__time{
-            font-size:20px;
-        }
-    }
+.activate-stop-button{
+    background-color:red;
 }

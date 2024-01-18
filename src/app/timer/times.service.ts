@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TimesService {
+  user: any = {};
   startTime: string = '';
   stopTime: string = '';
   date: string = '';
@@ -14,8 +15,6 @@ export class TimesService {
   constructor(
     private httpClient: HttpClient
   ) { }
-
-
 
   setStartTime(time: string, date: string) {
     this.date = date;

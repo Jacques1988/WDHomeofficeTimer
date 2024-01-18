@@ -1,11 +1,11 @@
 <section class="screen-section">
     <div class="timer-container">
-        <div>Hallo {{username}}</div>
+        <div>Hallo {{user.username}}</div>
         <div class="timer-container__buttons">
-            <div id="start" class="timer-container__buttons__start" (click)="onStart()">
-            <span id="start-triangle" class="timer-container__buttons__start__triangle"></span>
+            <div [ngClass]="{'deactivate-button' : runTimer}"class="timer-container__buttons__start" (click)="onStart()">
+            <span [ngClass]="{'deactivate-button-triangle': runTimer}" class="timer-container__buttons__start__triangle"></span>
         </div>
-            <div id="stop" class="timer-container__buttons__stop" (click)="onStop()"></div>
+            <div [ngClass]="{'activate-stop-button' : runTimer}" class="timer-container__buttons__stop" (click)="onStop()"></div>
         </div>
         <div class="timer-container__buttons__overview">
             <button routerLink="/overview/{{userId}}" class="btn">Übersicht</button>

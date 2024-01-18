@@ -40,9 +40,8 @@ export class AuthService {
     this.isLoggedIn();
   }
 
-  getUser() {
-    console.log(this.user)
-    /* return this.userName; */
+  getUser(): Observable<User> {
+    return this.user;
   }
 
   getIsAuthenticated() {

@@ -3,6 +3,7 @@ import { TimesService } from 'src/app/timer/times.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -12,7 +13,7 @@ export class TimerComponent {
   runTimer: boolean = false;
   date: string = '';
   userId: string = '';
-  username: string = '';
+  user: any;
   constructor(
     private timesService: TimesService,
     private authService: AuthService,
@@ -21,19 +22,11 @@ export class TimerComponent {
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.paramMap.get('id')!;
-    /* this.username = this.authService.getUserName(); */
+    this.user = this.authService.getUser();
   }
 
   onStart() {
     this.runTimer = true;
-    if (this.runTimer === true) {
-      let stopBtn = document.getElementById('stop')!;
-      stopBtn.style.backgroundColor = 'red';
-      let startBtn = document.getElementById('start')!;
-      let startTriangle = document.getElementById('start-triangle')!;
-      startBtn.style.backgroundColor = 'grey';
-      startTriangle.style.borderLeftColor = '#fff';
-    }
     this.date = new Date().toLocaleDateString('de-de', { year: "numeric", month: "numeric", day: "numeric" }).padStart(2, '0');
     let start = this.setTime();
     this.timesService.setStartTime(start, this.date);
@@ -42,14 +35,6 @@ export class TimerComponent {
 
   onStop() {
     this.runTimer = false;
-    if (this.runTimer === false) {
-      let stopBtn = document.getElementById('stop')!;
-      stopBtn.style.backgroundColor = 'grey';
-      let startBtn = document.getElementById('start')!;
-      let startTriangle = document.getElementById('start-triangle')!;
-      startBtn.style.backgroundColor = 'unset';
-      startTriangle.style.borderLeftColor = 'green';
-    }
     let end = this.setTime();
     this.timesService.setStopTime(end);
     console.log(end);
