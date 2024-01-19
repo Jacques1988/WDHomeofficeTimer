@@ -2,10 +2,6 @@ import { User } from '../users/user.model.js';
 import bcrypt from 'bcrypt';
 
 
-export async function homeRoute(req, res) {
-    res.send("");
-}
-
 export async function loginAction(req, res) {
 
     const user = await User.findOne({ username: req.body.name })
@@ -28,7 +24,6 @@ export async function loginAction(req, res) {
         }
     });
 }
-
 
 export async function signUpAction(req, res) {
     const signedUpUser = req.body;

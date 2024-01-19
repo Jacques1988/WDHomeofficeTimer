@@ -1,7 +1,9 @@
 
 import express from 'express';
 import { router as userRouter } from './users/index.js';
+import { router as workTimeRouter } from './workTimes/index.js';
 import { mongoose } from "mongoose";
+import cors from 'cors';
 
 
 mongoose.connect('mongodb://0.0.0.0:27017/werkDigital',).then(() => {
@@ -13,14 +15,11 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept, Authorization");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-    next();
-});
+app.use('/', cors({ origin: 'http://localhost:4200' }));
+app.use('/login', userRouter);
+app.use('/timer/saveTimes', workTimeRouter);
 
-app.use('/', userRouter);
+app.get('/', function (req, res) { res.redirect('/login') });
 
 
 
