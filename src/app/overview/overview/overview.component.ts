@@ -32,7 +32,7 @@ export class OverviewComponent {
 
   getWorkTimes() {
     this.getDate = true;
-    console.log(this.workdayForm.value);
+    /* console.log(this.workdayForm.value); */
   }
 
 }

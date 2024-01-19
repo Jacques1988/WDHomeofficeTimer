@@ -1,33 +1,23 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { WorkTime } from './timer/workTime';
+import { mockTimes } from './timer/mockTimes';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimesService {
-  user: any = {};
-  startTime: string = '';
-  stopTime: string = '';
-  date: string = '';
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) { }
 
-  setStartTime(time: string, date: string) {
-    this.date = date;
-    this.startTime = time;
-  }
 
-  setStopTime(time: string) {
-    this.stopTime = time;
-    /* this.pushTime(); */
+  pushData(data: WorkTime): Observable<WorkTime[]> {
+    mockTimes.push(data);
+    console.log(mockTimes);
+    return this.httpClient.post<WorkTime[]>("./mockTimes", data);
   }
-
-  /* pushTime() {
-    let workTime = this.startTime + ' - ' + this.stopTime;
-    users[0].worktimes.times?.push(workTime);
-  } */
 }

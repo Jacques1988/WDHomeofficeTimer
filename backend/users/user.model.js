@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
     username: String,
     password: String,
 
-}, { collection: 'werkDigital' });
+}, { collection: 'users' });
 
 const User = mongoose.model('User', UserSchema);
 

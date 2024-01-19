@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimesService } from 'src/app/timer/times.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { WorkTime } from './workTime';
 
 @Component({
   selector: 'app-timer',
@@ -11,13 +11,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TimerComponent {
   runTimer: boolean = false;
-  date: string = '';
   userId: string = '';
   user: any;
+  workTime: WorkTime = {
+    user: '',
+    date: '',
+    times: {
+      workTimeStart: "",
+      workTimeFinish: "",
+    },
+  };
+
   constructor(
     private timesService: TimesService,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -27,17 +35,19 @@ export class TimerComponent {
 
   onStart() {
     this.runTimer = true;
-    this.date = new Date().toLocaleDateString('de-de', { year: "numeric", month: "numeric", day: "numeric" }).padStart(2, '0');
-    let start = this.setTime();
-    this.timesService.setStartTime(start, this.date);
-    console.log(start);
+    let today = new Date();
+    let date = today.toLocaleDateString('de-DE');
+    let time: string = this.setTime();
+    this.workTime.user = this.userId;
+    this.workTime.date = date;
+    this.workTime.times.workTimeStart = time;
   }
 
   onStop() {
     this.runTimer = false;
-    let end = this.setTime();
-    this.timesService.setStopTime(end);
-    console.log(end);
+    let end: string = this.setTime();
+    this.workTime.times.workTimeFinish = end;
+    this.timesService.pushData(this.workTime).subscribe(data => { console.log(data) })
   }
 
   setTime() {
