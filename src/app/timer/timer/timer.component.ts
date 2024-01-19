@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimesService } from 'src/app/timer/times.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { WorkTime } from './workTime';
+import { WorkTime } from '../../models/workTime';
 
 @Component({
   selector: 'app-timer',

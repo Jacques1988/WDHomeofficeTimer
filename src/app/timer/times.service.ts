@@ -1,14 +1,17 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { WorkTime } from './timer/workTime';
-import { mockTimes } from './timer/mockTimes';
+import { WorkTime } from '../models/workTime';
+import { environment } from 'src/environments/environment.development';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimesService {
+  setTimesPath = environment.setTimesDataUrl;
+
 
   constructor(
     private httpClient: HttpClient,
@@ -16,8 +19,6 @@ export class TimesService {
 
 
   pushData(data: WorkTime): Observable<WorkTime[]> {
-    mockTimes.push(data);
-    console.log(mockTimes);
-    return this.httpClient.post<WorkTime[]>("./mockTimes", data);
+    return this.httpClient.post<WorkTime[]>(this.setTimesPath, data);
   }
 }
