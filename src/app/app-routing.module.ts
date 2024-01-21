@@ -6,11 +6,11 @@ import { OverviewComponent } from './overview/overview/overview.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'timer/:id', component: TimerComponent },
   { path: 'overview/:id', component: OverviewComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'login', redirectTo: '/', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

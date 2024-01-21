@@ -15,7 +15,6 @@ export class ShowTimesComponent {
   constructor() { }
 
   ngOnInit() {
-    /*  this.workDay = users[0].worktimes.date;
-     this.workTime = users[0].worktimes.times; */
+
   }
 }

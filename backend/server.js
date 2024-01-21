@@ -22,7 +22,6 @@ app.use('/timer/saveTimes', workTimeRouter);
 app.get('/', function (req, res) { res.redirect('/login') });
 
 
-
 app.listen(port, () => {
     console.log(`Server läuft auf Port: ${port}`);
 });

@@ -48,6 +48,7 @@ export class TimerComponent {
     let end: string = this.setTime();
     this.workTime.times.workTimeFinish = end;
     this.timesService.pushData(this.workTime).subscribe(data => { console.log(data) })
+    console.log(end)
   }
 
   setTime() {

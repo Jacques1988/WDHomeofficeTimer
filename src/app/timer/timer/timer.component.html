@@ -9,8 +9,8 @@
                 </div>
             </button>  
 
-            <button>
-                <div [ngClass]="{'activate-stop-button' : runTimer}" class="timer-container__buttons__stop" (click)="onStop()"></div>
+            <button [disabled]="!runTimer" (click)="onStop()">
+                <div [ngClass]="{'activate-stop-button' : runTimer}" class="timer-container__buttons__stop" ></div>
             </button>
 
         </div>

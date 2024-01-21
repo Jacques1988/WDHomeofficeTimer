@@ -12,4 +12,5 @@ export async function saveTimeAction(req, res) {
             workTimeFinish: workTime.times.workTimeFinish,
         }
     });
+    return res.status(200).json({ message: 'Arbeitszeit erfolgreich gespeichert' });
 }
