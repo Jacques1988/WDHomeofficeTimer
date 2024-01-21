@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TimesService } from '../../timer/times.service';
+import { TimesService } from '../../times.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,16 +23,15 @@ export class OverviewComponent {
   }
 
 
-
   workdayForm: FormGroup = new FormGroup({
     'workdate': new FormControl(
       null, [Validators.required])
   });
 
 
-  getWorkTimes() {
+  fetchWorkTimes() {
     this.getDate = true;
-    /* console.log(this.workdayForm.value); */
+    this.timeService.fetchWorkTimes(this.userId).subscribe(data => { console.log(data) });
   }
 
 }

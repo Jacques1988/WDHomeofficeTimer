@@ -4,7 +4,7 @@
             <span class="overview-container__navigation-btn__arrow"></span>
             <span class="overview-container__navigation-btn__title">Start/Stop</span>
         </a>
-        <form [formGroup]="workdayForm" (ngSubmit)="getWorkTimes()" class="overview-container__form">
+        <form [formGroup]="workdayForm" (ngSubmit)="fetchWorkTimes()" class="overview-container__form">
             <div class="overview-container__form__datepicker-container">
                 <h2>Datum wählen</h2>
                 <input

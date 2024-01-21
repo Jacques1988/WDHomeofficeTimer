@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TimesService } from 'src/app/timer/times.service';
+import { TimesService } from 'src/app/times.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { WorkTime } from '../../models/workTime';
@@ -47,8 +47,7 @@ export class TimerComponent {
     this.runTimer = false;
     let end: string = this.setTime();
     this.workTime.times.workTimeFinish = end;
-    this.timesService.pushData(this.workTime).subscribe(data => { console.log(data) })
-    console.log(end)
+    this.timesService.saveWorkTimes(this.workTime).subscribe(data => { console.log(data) })
   }
 
   setTime() {
