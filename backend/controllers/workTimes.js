@@ -14,3 +14,11 @@ export async function saveTimeAction(req, res) {
     });
     return res.status(200).json({ message: 'Arbeitszeit erfolgreich gespeichert' });
 }
+
+export async function fetchUserTimesAction(req, res) {
+    const userId = req.params.id;
+    const date = req.params.date;
+    console.log(userId, date);
+    /* const workTimes = await WorkTimes.find({ user: userId });
+    return res.status(200).json(workTimes) */
+}

@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { saveTimeAction } from '../controllers/workTimes.js';
+import { saveTimeAction, fetchUserTimesAction } from '../controllers/workTimes.js';
 
 
 const router = Router();
 
-router.post('/', saveTimeAction);
+router.post('/saveTimes', saveTimeAction);
+router.get('/fetchUserTimes/:id/:date', fetchUserTimesAction)
 
 export { router }

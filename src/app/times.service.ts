@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { WorkTime } from './models/workTime';
 import { environment } from 'src/environments/environment.development';
 
@@ -11,9 +11,10 @@ import { environment } from 'src/environments/environment.development';
 export class TimesService {
   setTimesPath = environment.setTimesDataUrl;
   workDataPath = environment.fetchUrlOverview;
+  workTimes: WorkTime[] = [];
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) { }
 
 
@@ -21,8 +22,17 @@ export class TimesService {
     return this.httpClient.post<WorkTime[]>(this.setTimesPath, data);
   }
 
-  fetchWorkTimes(id: string): Observable<WorkTime[]> {
+  fetchWorkTimes(id: string, date: string): Observable<WorkTime[]> {
     const userId = id;
-    return this.httpClient.get<WorkTime[]>(this.workDataPath + '/' + userId);
+    const workDate = date;
+    let fetchParams = new HttpParams();
+    fetchParams = fetchParams.append('user', userId);
+    fetchParams = fetchParams.append('date', workDate);
+    return this.httpClient.get<WorkTime[]>(this.workDataPath, { params: fetchParams });
   }
+
+  setWorktimes(data: WorkTime[]) {
+    this.workTimes = data;
+  }
+
 }

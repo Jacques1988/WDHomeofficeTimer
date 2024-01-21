@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { WorkTime } from 'src/app/models/workTime';
+import { TimesService } from 'src/app/times.service';
 
 
 @Component({
@@ -10,9 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class ShowTimesComponent {
 
   workDay: string = '';
-  workTime: string = '';
+  workTime: WorkTime[] = [];
 
-  constructor() { }
+  constructor(
+    private timeService: TimesService,
+  ) { }
 
   ngOnInit() {
 

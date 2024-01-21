@@ -17,7 +17,7 @@ const port = 3000;
 app.use(express.json());
 app.use('/', cors({ origin: 'http://localhost:4200' }));
 app.use('/login', userRouter);
-app.use('/timer/saveTimes', workTimeRouter);
+app.use('/timer', workTimeRouter);
 
 app.get('/', function (req, res) { res.redirect('/login') });
 
