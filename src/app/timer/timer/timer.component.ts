@@ -35,11 +35,9 @@ export class TimerComponent {
 
   onStart() {
     this.runTimer = true;
-    let today = new Date();
-    let date = today.toLocaleDateString('de-DE');
     let time: string = this.setTime();
     this.workTime.user = this.userId;
-    this.workTime.date = date;
+    this.workTime.date = this.getCurrentDate();
     this.workTime.times.workTimeStart = time;
   }
 
@@ -56,6 +54,14 @@ export class TimerComponent {
     let min = today.getMinutes().toString().padStart(2, '0');
 
     return std + ':' + min;
+  }
+
+  getCurrentDate() {
+    let today = new Date();
+    let day = today.getDay().toString().padStart(2, '0');
+    let month = today.getMonth().toString() + 1;
+    let year = today.getFullYear();
+    return `${day}.${month}.${year}`;
   }
 }
 
