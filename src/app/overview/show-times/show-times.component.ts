@@ -11,7 +11,7 @@ import { TimesService } from 'src/app/times.service';
 export class ShowTimesComponent {
 
   workDay: string = '';
-  workTime: WorkTime[] = [];
+  workTime: any;
 
   constructor(
     private timeService: TimesService,

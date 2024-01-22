@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { WorkTime } from './models/workTime';
 import { environment } from 'src/environments/environment.development';
+
 
 
 @Injectable({
@@ -12,6 +13,7 @@ export class TimesService {
   setTimesPath = environment.setTimesDataUrl;
   workDataPath = environment.fetchUrlOverview;
   workTimes: WorkTime[] = [];
+  workTimesObservable = of(this.workTimes);
 
   constructor(
     private httpClient: HttpClient,

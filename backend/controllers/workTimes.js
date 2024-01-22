@@ -18,6 +18,6 @@ export async function fetchUserTimesAction(req, res) {
     const userId = req.query.user;
     const workday = req.query.date;
     const workTimes = await WorkTimes.find({ user: userId, date: workday });
-    console.log(workTimes);
+
     return res.status(200).json(workTimes)
 }
