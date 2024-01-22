@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TimesService } from '../../times.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +18,8 @@ export class OverviewComponent {
 
   constructor(
     private timeService: TimesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -27,20 +29,22 @@ export class OverviewComponent {
 
   workdayForm: FormGroup = new FormGroup({
     'workdate': new FormControl(
-      null, [Validators.required])
+      this.currentDate, [Validators.required])
   });
 
 
   fetchWorkTimes() {
     this.getDate = true;
+    const workdayUnformatted = this.workdayForm.get('workdate')!.value;
+    const workdayformatted: any = this.datePipe.transform(workdayUnformatted, 'dd.MM.yyyy');
     this.timeService.fetchWorkTimes(
       this.userId,
-      this.workdayForm.value.workdate).subscribe(
+      workdayformatted).subscribe(
         data => {
           this.workTimes = data;
           this.timeService.setWorktimes(this.workTimes);
+          console.log(this.workTimes)
         });
-
   }
 
 }

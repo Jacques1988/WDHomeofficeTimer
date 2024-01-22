@@ -5,6 +5,6 @@ import { saveTimeAction, fetchUserTimesAction } from '../controllers/workTimes.j
 const router = Router();
 
 router.post('/saveTimes', saveTimeAction);
-router.get('/fetchUserTimes/:id/:date', fetchUserTimesAction)
+router.get('/fetchUserTimes', fetchUserTimesAction)
 
 export { router }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpParams } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [HttpParams],
+  providers: [HttpParams, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
