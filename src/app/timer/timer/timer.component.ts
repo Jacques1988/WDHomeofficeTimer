@@ -39,6 +39,7 @@ export class TimerComponent {
     this.workTime.user = this.userId;
     this.workTime.date = this.getCurrentDate();
     this.workTime.times.workTimeStart = time;
+    console.log(this.workTime.date);
   }
 
   onStop() {
@@ -58,7 +59,7 @@ export class TimerComponent {
 
   getCurrentDate() {
     let today = new Date();
-    let day = today.getDay().toString().padStart(2, '0');
+    let day = today.getDate().toString().padStart(2, '0');
     let month = today.getMonth().toString() + 1;
     let year = today.getFullYear();
     return `${day}.${month}.${year}`;
