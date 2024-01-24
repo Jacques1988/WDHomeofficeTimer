@@ -2,14 +2,17 @@ import { WorkTimes } from "../workTimes/workTimes.model.js";
 import { User } from '../users/user.model.js';
 import nodemailer from 'nodemailer';
 import sgMail from '@sendgrid/mail';
+import { config } from "dotenv";
 
-sgMail.setApiKey('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');
+
+config();
+sgMail.setApiKey(process.env.EmailAPIkeyforWorkTimes);
 
 const transporter = nodemailer.createTransport({
     service: 'sendGrid',
     auth: {
         user: 'apikey',
-        pass: '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',
+        pass: process.env.EmailAPIkeyforWorkTimes,
     }
 })
 
