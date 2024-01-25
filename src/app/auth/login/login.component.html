@@ -14,7 +14,7 @@
                     <input type="password" name="userpassword" placeholder="Your Password" formControlName="userPassword">
                 </div>
             </div>
-            <span *ngIf="loginFailed" id="fail">{{errorMessage}}</span>
+            <span class="login-container__form__fail-container" *ngIf="loginFailed" id="fail">{{errorMessage}}</span>
             <div class="login-container__form__footer">
                 <button class="btn btn-login" type="submit">Login</button>
             </div>
