@@ -26,7 +26,6 @@ export async function loginAction(req, res) {
             }
         });
     } catch (error) {
-        console.error('An error occured:', error.message);
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -34,22 +33,31 @@ export async function loginAction(req, res) {
 
 
 export async function signUpAction(req, res) {
-    const signedUpUser = req.body;
-    if (signedUpUser.password !== signedUpUser.passwordrepeat) {
-        return res.status(401).json({ message: "Passwörter stimmen nicht überein!" })
-    } else {
-        const password = await bcrypt.hash(signedUpUser.password, 10);
-        const savedUser = await User.create({
-            firstname: signedUpUser.firstname,
-            lastname: signedUpUser.lastname,
-            birthdate: signedUpUser.bithdate,
-            username: signedUpUser.username,
-            password: password,
+    try {
+        const signedUpUser = req.body;
+        if (signedUpUser.password !== signedUpUser.passwordrepeat) {
+            return res.status(401).json({ message: "Passwörter stimmen nicht überein!" })
+        } else {
+            const password = await bcrypt.hash(signedUpUser.password, 10);
+            const savedUser = await User.create({
+                firstname: signedUpUser.firstname,
+                lastname: signedUpUser.lastname,
+                birthdate: signedUpUser.bithdate,
+                username: signedUpUser.username,
+                password: password,
+            });
+            const user = await User.findOne({ username: savedUser.username })
+            const userId = user._id.toString();
+            const userPassword = user.password;
+            const username = user.username;
+            return res.status(200).json({ message: 'Anmeldung erfolgreich' });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Internal server error'
         });
-        const user = await User.findOne({ username: savedUser.username })
-        const userId = user._id.toString();
-        return res.status(200).json({ userId: userId, userName: user.username });
     }
+
 }
 
 export async function getUser(id) {

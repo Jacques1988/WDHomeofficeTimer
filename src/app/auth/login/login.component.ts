@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { response } from 'express';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,7 @@ export class LoginComponent {
         const user: any = response;
         this.loginFailed = false;
         this.authService.setAuthenticationState(user, true);
-      }, error => {
+      }, (error: HttpErrorResponse) => {
         this.errorMessage = error.error.message;
         this.loginFailed = true;
         this.loginForm.reset();

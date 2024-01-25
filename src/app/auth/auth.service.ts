@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { authData } from './login/authData';
 import { User } from '../models/User.model';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class AuthService {
 
   login(userName: string, userPassword: string): Observable<authData> {
     let data = { name: userName, password: userPassword };
-    return this.httpClient.post<authData>(this.loginUrl, data, { headers: this.headers });
+    return this.httpClient.post<authData>(this.loginUrl, data, { headers: this.headers })
   }
 
   setAuthenticationState(user: User, authenticated: boolean) {

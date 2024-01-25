@@ -2,6 +2,7 @@ import { Component, resolveForwardRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignUpService } from './sign-up.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,6 +10,7 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
+  signedUp: boolean = false;
 
   signUpForm: FormGroup = new FormGroup({
     'firstname': new FormControl(null, [Validators.required, Validators.minLength(4)]),
@@ -22,14 +24,18 @@ export class SignUpComponent {
 
   constructor(
     private signUpService: SignUpService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
 
   onSubmit() {
     this.signUpService.signUp(this.signUpForm.value).subscribe(response => {
-      let userId: any = response;
+      try {
+        this.router.navigate(['/']);
+      } catch (error) {
 
+      }
     });
   }
 

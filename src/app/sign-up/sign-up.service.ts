@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { signUpData } from './signUpData';
 import { environment } from 'src/environments/environment.development';
 
@@ -20,7 +20,12 @@ export class SignUpService {
 
 
   signUp(data: {}): Observable<signUpData> {
-    return this.httpClient.post<signUpData>(this.signUpUrl, data, { headers: this.headers });
+    return this.httpClient.post<signUpData>(this.signUpUrl, data, { headers: this.headers }).pipe(
+      catchError(error => {
+        console.error('Fehler beim Anmelden', error);
+        return throwError(error);
+      })
+    );
   }
 
 

@@ -11,7 +11,7 @@
                 </div>
                 <div class="login-container__form__body__input-container">
                     <label for="userpassword">Passwort:</label>
-                    <input type="text" name="userpassword" placeholder="Your Password" formControlName="userPassword">
+                    <input type="password" name="userpassword" placeholder="Your Password" formControlName="userPassword">
                 </div>
             </div>
             <span *ngIf="loginFailed" id="fail">{{errorMessage}}</span>

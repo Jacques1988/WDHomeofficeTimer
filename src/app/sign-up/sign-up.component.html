@@ -22,7 +22,7 @@
             <input class="sign-up-container__form__input-group__input-container" type="password" formControlName="passwordrepeat">
         </div>
         <div class="sign-up-container__form__footer">
-            <button class="btn btn-login" type="submit">
+            <button [disabled]="!signUpForm.valid" class="btn btn-login" type="submit">
                 Sign Up
             </button>
         </div>
