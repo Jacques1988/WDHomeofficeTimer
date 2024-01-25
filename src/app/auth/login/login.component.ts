@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   loginFailed: boolean = false;
-
+  errorMessage: string = '';
 
   constructor(
     private authService: AuthService,
@@ -33,6 +34,7 @@ export class LoginComponent {
         this.loginFailed = false;
         this.authService.setAuthenticationState(user, true);
       }, error => {
+        this.errorMessage = error.error.message;
         this.loginFailed = true;
         this.loginForm.reset();
         this.router.navigate(['/']);
@@ -42,11 +44,5 @@ export class LoginComponent {
       this.router.navigate(['/']);
       return
     }
-
   }
-
-
-
-
-
 }
