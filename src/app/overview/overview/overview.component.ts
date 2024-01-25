@@ -24,6 +24,7 @@ export class OverviewComponent {
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.paramMap.get('id')!;
+    this.fetchWorkTimes();
   }
 
 
@@ -43,7 +44,7 @@ export class OverviewComponent {
         data => {
           this.workTimes = data;
           this.timeService.setWorktimes(this.workTimes);
-          console.log(this.workTimes)
+          this.currentDate = workdayformatted;
         });
   }
 

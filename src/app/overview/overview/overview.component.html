@@ -5,7 +5,7 @@
                 <span class="overview-container__navigation-btn__arrow"></span>
                 <span class="overview-container__navigation-btn__title">zurück</span>
             </a>
-            <span class="overview-container__head__navigation">Übersicht der Arbeitszeiten von </span>
+            <span class="overview-container__head__navigation">Übersicht der Arbeitszeiten vom {{currentDate}}</span>
         </div>
 
         <div class="overview-container__body">
@@ -23,7 +23,7 @@
             </form>
 
             <div class="overview-container__body__timelist-container">
-                <span class="overview-container__body__timelist-container__title">Arbeitszeiten vom </span>
+                <span class="overview-container__body__timelist-container__title">Arbeitszeiten vom {{currentDate}}</span>
                 <ul class="overview-container__body__timelist-container__time-list">
                     <li *ngFor="let worktime of workTimes" class="overview-container__body__timelist-container__time-list__element">{{worktime.times.workTimeStart}} - {{worktime.times.workTimeFinish}} Uhr</li>
                 </ul>
