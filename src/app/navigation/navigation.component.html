@@ -1,8 +1,11 @@
 <nav class="navigation">
     <div class="navigation__inner-container">
-        <span class="navigation__inner-container__path">Homeoffice CheckIn {{ pathTitle }}</span>
+        <span class="navigation__inner-container__path">Homeoffice App</span>
     </div>
     <div class="navigation__sign-up-container">
-        <a *ngIf="signUp" (click)="checkRoute()" routerLink="/{{route}}">{{route}}</a>
+        <a *ngIf="signUp && !isLoggedIn" routerLink="/signUp" (click)="onSignUpPage()">signUp</a>
+        <a *ngIf="!signUp && !isLoggedIn" routerLink="/" (click)="onSignUpPage()">login</a>
+        <a *ngIf="isLoggedIn" routerLink="/" (click)="isLoggedOut()">logout</a>
+
     </div>
 </nav>

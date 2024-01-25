@@ -4,13 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { authData } from './login/authData';
 import { User } from '../models/User.model';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated: boolean = false;
+  private isAuthenticated = new BehaviorSubject<boolean>(false);
+  /* private isAuthenticated: boolean = false; */
   private user: any = {};
 
   headers = new HttpHeaders().append('Content-Type', 'application/JSON');
@@ -36,7 +37,7 @@ export class AuthService {
       user.birthdate,
       user.username,
     );
-    this.isAuthenticated = authenticated;
+    this.isAuthenticated.next(authenticated);
     this.isLoggedIn();
   }
 
@@ -44,15 +45,15 @@ export class AuthService {
     return this.user;
   }
 
-  getIsAuthenticated() {
-    return this.isAuthenticated;
+  get IsAuthenticated() {
+    return this.isAuthenticated.asObservable();
   }
 
   isLoggedIn() {
     if (this.isAuthenticated && this.user.id) {
       this.router.navigate(['/timer/' + this.user.id]);
     } else {
-      this.isAuthenticated = false;
+      this.isAuthenticated.next(false);
       this.user.userId = '';
       this.router.navigate(['/']);
     }

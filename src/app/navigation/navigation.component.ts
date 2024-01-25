@@ -1,57 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
 })
-export class NavigationComponent implements OnInit {
-  pathTitle: string = "";
-  route: string = "";
+export class NavigationComponent {
   signUp: boolean = true;
-  trackRoute: any;
+  isLoggedIn: boolean = false;
+
   constructor(
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
-
-    this.trackRoute = this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        switch (event.url) {
-          case '/':
-            this.pathTitle = 'Login';
-            this.signUp = true;
-            this.route = 'signUp'
-            break;
-          case '/signUp':
-            this.pathTitle = 'Sign Up'
-            this.route = 'login';
-            break;
-          case '/timer':
-            this.pathTitle = ' - Start';
-            this.signUp = false;
-            break;
-          case '/overview':
-            this.pathTitle = 'Übersicht';
-            this.signUp = false;
-            break;
-          default:
-            this.pathTitle = "";
-        }
-      }
+    this.authService.IsAuthenticated.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
     });
   }
 
-  checkRoute() {
-    if (this.router.url === '/signUp') {
-      this.route = 'signUp';
-      this.pathTitle = 'Login'
-    }
-    if (this.router.url === 'login') {
-      this.route = 'login';
-    }
+
+  onSignUpPage() {
+    this.signUp = !this.signUp;
   }
+
+  isLoggedOut() {
+    this.isLoggedIn = false;
+  }
+
+
 }
 
