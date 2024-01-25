@@ -1,12 +1,28 @@
 .timer-container{
     display:flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items:center;
     flex-direction: column;
-    border:1px solid grey;
-    padding:16px;
+    background-color: #fff;
+    font-family: 'IBM';
+    border-top-right-radius:2rem;
+    border-bottom-left-radius:2rem;
     width:900px;
     height:500px;
+
+    &__head{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100px;
+        width:100%;
+        color:#fff;
+        font-size:1.25rem;
+        border-top-right-radius:2rem;
+        padding:1rem;
+        background-image:linear-gradient(90deg,blue, lightblue);
+        margin-bottom:30px;
+    }
 
     &__buttons{
         display:flex;
