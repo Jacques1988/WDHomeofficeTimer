@@ -1,25 +1,36 @@
 <section class="screen-section">
     <div class="overview-container">
-        <a routerLink="/timer/{{userId}}" class="overview-container__navigation-btn">
-            <span class="overview-container__navigation-btn__arrow"></span>
-            <span class="overview-container__navigation-btn__title">Start/Stop</span>
-        </a>
-        <form [formGroup]="workdayForm" (ngSubmit)="fetchWorkTimes()" class="overview-container__form">
-            <div class="overview-container__form__datepicker-container">
-                <h2>Datum wählen</h2>
-                <input
-                    class="overview-container__form__datepicker-container__datepicker"
-                    type="date"
-                    formControlName="workdate"
-                >
-            </div>
-            <button class="btn">OK</button>
-        </form>
-        <div class="overview-container__timelist-container">
-            <span class="overview-container__timelist-container__title"></span>
-            <ul class="overview-container__timelist-container__time-list">
-                <li *ngFor="let worktime of workTimes" class="overview-container__timelist-container__time-list__element">{{worktime.times.workTimeStart}} - {{worktime.times.workTimeFinish}} Uhr</li>
-            </ul>
+        <div class="overview-container__head">
+            <a routerLink="/timer/{{userId}}" class="overview-container__navigation-btn">
+                <span class="overview-container__navigation-btn__arrow"></span>
+                <span class="overview-container__navigation-btn__title">zurück</span>
+            </a>
+            <span class="overview-container__head__navigation">Übersicht der Arbeitszeiten von </span>
         </div>
-    </div>
+
+        <div class="overview-container__body">
+
+            <form [formGroup]="workdayForm" (ngSubmit)="fetchWorkTimes()" class="overview-container__form">
+                <div class="overview-container__form__datepicker-container">
+                    <h2>Datum wählen</h2>
+                    <input
+                        class="overview-container__form__datepicker-container__datepicker"
+                        type="date"
+                        formControlName="workdate"
+                    >
+                </div>
+                <button class="btn">OK</button>
+            </form>
+
+            <div class="overview-container__body__timelist-container">
+                <span class="overview-container__body__timelist-container__title">Arbeitszeiten vom </span>
+                <ul class="overview-container__body__timelist-container__time-list">
+                    <li *ngFor="let worktime of workTimes" class="overview-container__body__timelist-container__time-list__element">{{worktime.times.workTimeStart}} - {{worktime.times.workTimeFinish}} Uhr</li>
+                </ul>
+            </div>
+        </div>
+
+        </div>
+        
+        
 </section>
