@@ -8,9 +8,9 @@ const workTimesSchema = mongoose.Schema({
         workTimeStart: String,
         workTimeFinish: String,
     }
-}, { collection: 'worktimes' },);
+},);
 
-const WorkTimes = mongoose.model('WorkTimes', workTimesSchema);
+const WorkTimes = mongoose.model('workTimes', workTimesSchema);
 
 
 export { WorkTimes };

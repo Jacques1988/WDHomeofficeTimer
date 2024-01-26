@@ -39,7 +39,6 @@ export class TimerComponent {
     this.workTime.user = this.userId;
     this.workTime.date = this.getCurrentDate();
     this.workTime.times.workTimeStart = time;
-    console.log(this.workTime.date);
   }
 
   onStop() {

@@ -1,12 +1,12 @@
-
+import { config } from 'dotenv';
 import express from 'express';
 import { router as userRouter } from './users/index.js';
 import { router as workTimeRouter } from './workTimes/index.js';
 import { mongoose } from "mongoose";
 import cors from 'cors';
 
-
-mongoose.connect('mongodb://0.0.0.0:27017/werkDigital',).then(() => {
+config();
+mongoose.connect(process.env.database,).then(() => {
     console.log('Connected to Database');
 }).catch((error) => { console.log('Connection failed: ', error) });
 
