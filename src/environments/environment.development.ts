@@ -1,7 +1,7 @@
 export const environment = {
     production: false,
-    fetchUrlOverview: 'http://localhost:3000/timer/fetchUserTimes',
-    setTimesDataUrl: 'http://localhost:3000/timer/savetimes',
-    loginUrl: 'http://localhost:3000/login',
-    signUpUrl: 'http://localhost:3000/signUp',
+    fetchUrlOverview: 'https://worktimetracker.bluewave-tech.de/timer/fetchUserTimes',
+    setTimesDataUrl: 'https://worktimetracker.bluewave-tech.de/timer/savetimes',
+    loginUrl: 'https://worktimetracker.bluewave-tech.de/login',
+    signUpUrl: 'https://worktimetracker.bluewave-tech.de/signUp'
 };
