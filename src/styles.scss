@@ -27,8 +27,15 @@ a{
     cursor:pointer;
 
     &:hover{
-        background-color:grey;
+        box-shadow:2px 2px 5px black;
         color:#fff;
+    }
+
+    &--overview{
+
+        @media screen and (max-width:600px){
+            width:280px;
+        }
     }
 }
 
