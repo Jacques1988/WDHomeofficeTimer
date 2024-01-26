@@ -6,6 +6,5 @@
         <a *ngIf="signUp && !isLoggedIn" routerLink="/signUp" (click)="onSignUpPage()">signUp</a>
         <a *ngIf="!signUp && !isLoggedIn" routerLink="/" (click)="onSignUpPage()">login</a>
         <a *ngIf="isLoggedIn" routerLink="/" (click)="isLoggedOut()">logout</a>
-
     </div>
 </nav>
