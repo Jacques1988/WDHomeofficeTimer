@@ -9,9 +9,9 @@ config();
 sgMail.setApiKey(process.env.EmailAPIkeyforWorkTimes);
 
 const transporter = nodemailer.createTransport({
-    service: 'sendGrid',
+    service: process.env.mailService,
     auth: {
-        user: 'apikey',
+        user: process.env.user,
         pass: process.env.EmailAPIkeyforWorkTimes,
     }
 })
@@ -30,8 +30,8 @@ export async function saveTimeAction(req, res) {
     const user = await User.findOne({ _id: workTime.user });
 
     const mailOptions = {
-        to: 'jacquesvanluyck@gmail.com',
-        from: 'jacquesvanluyck@gmail.com',
+        to: process.env.receiver,
+        from: process.env.sender,
         subject: 'Neue Arbeitszeit eingetragen',
         html: `
         <div valign="top" align="center" style='max-width:100%; background-color:darkorchid; padding:2rem;'>
@@ -47,7 +47,6 @@ export async function saveTimeAction(req, res) {
             return console.log(error);
         }
     });
-
 
     return res.status(200).json({ message: 'Arbeitszeit erfolgreich gespeichert' });
 }
