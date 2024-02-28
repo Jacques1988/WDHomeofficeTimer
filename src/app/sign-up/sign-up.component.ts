@@ -1,4 +1,4 @@
-import { Component, resolveForwardRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignUpService } from './sign-up.service';
 import { AuthService } from '../auth/auth.service';
@@ -32,9 +32,10 @@ export class SignUpComponent {
   onSubmit() {
     this.signUpService.signUp(this.signUpForm.value).subscribe(response => {
       try {
+        alert("Registrierung erfolgreich");
         this.router.navigate(['/']);
       } catch (error) {
-
+        alert("Uuups.... Es ist etwas scheif gelaufen " + error);
       }
     });
   }

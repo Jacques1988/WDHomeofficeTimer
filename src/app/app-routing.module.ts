@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'timer/:id', component: TimerComponent },
   { path: 'overview/:id', component: OverviewComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
