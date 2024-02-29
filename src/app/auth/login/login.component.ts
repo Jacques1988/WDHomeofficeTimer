@@ -20,8 +20,6 @@ export class LoginComponent {
     private router: Router
   ) { }
 
-
-
   loginForm: FormGroup = new FormGroup({
     'userName': new FormControl(null, [Validators.required, Validators.minLength(3)]),
     'userPassword': new FormControl(null, [Validators.required, Validators.minLength(4)]),
@@ -31,17 +29,24 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value.userName, this.loginForm.value.userPassword).subscribe(response => {
-        const user: any = response;
+        const res: any = response;
         this.loginFailed = false;
-        this.authService.setAuthenticationState(user, true);
+        if (res.user !== null) {
+          this.authService.setAuthenticationState(res.user, true);
+        } else {
+          this.loginFailed = true;
+          this.errorMessage = res.message;
+        }
       }, (error: HttpErrorResponse) => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
         this.loginFailed = true;
         this.loginForm.reset();
+        console.log(this.errorMessage);
         this.router.navigate(['/']);
       })
     } else {
       this.loginFailed = true;
+      console.log("Fehler bei der Anmeldung")
       this.router.navigate(['/']);
       return
     }
