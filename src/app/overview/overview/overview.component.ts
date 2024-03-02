@@ -38,11 +38,21 @@ export class OverviewComponent {
     this.getDate = true;
     const workdayUnformatted = this.workdayForm.get('workdate')!.value;
     const workdayformatted: any = this.datePipe.transform(workdayUnformatted, 'dd.MM.yyyy');
+    this.currentDate = workdayformatted;
     this.timeService.fetchWorkTimes(
       this.userId,
-      workdayformatted).subscribe(
-        data => {
-          this.workTimes = data;
+      workdayUnformatted).subscribe(
+        (data: any[]) => {
+          this.workTimes = data.map(item => {
+            return {
+              user: item.userId.toString(),
+              date: item.date,
+              times: {
+                workTimeStart: item.worktimeStart,
+                workTimeFinish: item.worktimeFinish,
+              }
+            }
+          });
           this.timeService.setWorktimes(this.workTimes);
           this.currentDate = workdayformatted;
         });

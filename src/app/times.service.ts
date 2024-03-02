@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { WorkTime } from './models/workTime';
 import { environment } from 'src/environments/environment.development';
-
 
 
 @Injectable({
@@ -14,6 +13,7 @@ export class TimesService {
   workDataPath = environment.fetchUrlOverview;
   workTimes: WorkTime[] = [];
   workTimesObservable = of(this.workTimes);
+  headers: {} = new HttpHeaders().append('Content-Type', 'application/json');
 
   constructor(
     private httpClient: HttpClient,
@@ -21,7 +21,7 @@ export class TimesService {
 
 
   saveWorkTimes(data: WorkTime): Observable<WorkTime[]> {
-    return this.httpClient.post<WorkTime[]>(this.setTimesPath, data);
+    return this.httpClient.post<WorkTime[]>(this.setTimesPath, data, { headers: this.headers });
   }
 
   fetchWorkTimes(id: string, date: string): Observable<WorkTime[]> {

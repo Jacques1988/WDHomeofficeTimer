@@ -45,15 +45,18 @@ export class TimerComponent {
     this.runTimer = false;
     let end: string = this.setTime();
     this.workTime.times.workTimeFinish = end;
-    this.timesService.saveWorkTimes(this.workTime).subscribe(data => { console.log(data) })
+    this.timesService.saveWorkTimes(this.workTime).subscribe(data => {
+      alert("Arbeitszeiten wurden erfolgreich hinzugefügt");
+    })
   }
 
   setTime() {
     let today = new Date();
     let std = today.getHours().toString().padStart(2, '0');
     let min = today.getMinutes().toString().padStart(2, '0');
+    let sec = today.getSeconds().toString().padStart(2, "0");
 
-    return std + ':' + min;
+    return std + ':' + min + ':' + sec;
   }
 
   getCurrentDate() {
@@ -61,7 +64,8 @@ export class TimerComponent {
     let day = today.getDate().toString().padStart(2, '0');
     let month = today.getMonth().toString() + 1;
     let year = today.getFullYear();
-    return `${day}.${month}.${year}`;
+
+    return `${year}-${month}-${day}`;
   }
 }
 
