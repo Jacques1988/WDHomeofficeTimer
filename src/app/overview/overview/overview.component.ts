@@ -11,7 +11,6 @@ import { WorkTime } from 'src/app/models/workTime';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent {
-  getDate: boolean = false;
   userId: string = '';
   currentDate: string = new Date().toISOString().substring(0, 10);
   workTimes: WorkTime[] = [];
@@ -35,7 +34,7 @@ export class OverviewComponent {
 
 
   fetchWorkTimes() {
-    this.getDate = true;
+
     const workdayUnformatted = this.workdayForm.get('workdate')!.value;
     const workdayformatted: any = this.datePipe.transform(workdayUnformatted, 'dd.MM.yyyy');
     this.currentDate = workdayformatted;
@@ -43,6 +42,7 @@ export class OverviewComponent {
       this.userId,
       workdayUnformatted).subscribe(
         (data: any[]) => {
+
           this.workTimes = data.map(item => {
             return {
               user: item.userId.toString(),
@@ -55,7 +55,8 @@ export class OverviewComponent {
           });
           this.timeService.setWorktimes(this.workTimes);
           this.currentDate = workdayformatted;
-        });
+        }
+      );
   }
 
 }
